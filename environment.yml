@@ -1,0 +1,33 @@
+name: aml4NlpMiniProject
+channels:
+    - conda-forge
+    - defaults
+dependencies:
+    - python=3.14
+    - pip
+    - numpy
+    - pandas
+    - scipy
+    - scikit-learn
+    - jupyterlab
+    - matplotlib
+    - seaborn
+    - nltk
+    - spacy
+    - gensim
+    - sentencepiece
+    - faiss-cpu
+    - pytorch
+    - torchvision
+    - torchaudio
+    # If you have a GPU, replace/remove cudatoolkit or install the appropriate pytorch build separately
+    - cudatoolkit=11.7
+    - pip:
+        - transformers
+        - datasets
+        - accelerate
+        - tokenizers
+        - huggingface-hub
+        - sacremoses
+        - fasttext
+        - wandb
