@@ -37,7 +37,6 @@ Sentiment analysis, Binary classification (negative / positive)
 # Discussion: summarise the most important results and lessons learned (what is good, what can be improved)
 
 TODO: Delete useful slurm commands
-TODO: Add baseline model
 TODO: Add validation set
 TODO: Compare with another transformer model (distilBert or roberta)
 TODO: Compare with bert-base-uncased
