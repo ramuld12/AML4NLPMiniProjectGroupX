@@ -14,6 +14,17 @@ pip install -r requirements.txt
 ```
 Then run the cells in the .ipynb files under the experiments folder or run them with `python 'python_file_here.py'`
 
+
+## Useful commands for slurm
+```
+sbatch: to enqueue new jobs
+scancel: to cancel existing jobs
+squeue: to see the queue and running jobs
+squeue -u <user>: View the users jobstatuses
+seff: to analyse the resources used on completed jobs
+tail -f <file>: View the last part of a file dynamically
+```
+
 # Central problem, domain, data characteristics
 Sentiment analysis, Binary classification (negative / positive)
 
@@ -24,3 +35,11 @@ Sentiment analysis, Binary classification (negative / positive)
 
 
 # Discussion: summarise the most important results and lessons learned (what is good, what can be improved)
+
+TODO: Delete useful slurm commands
+TODO: Add baseline model
+TODO: Add validation set
+TODO: Compare with another transformer model (distilBert or roberta)
+TODO: Compare with bert-base-uncased
+TODO: Hyper-parameter-tuning
+TODO: Qualitative Error Analysis

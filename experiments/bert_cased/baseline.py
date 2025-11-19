@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
     trainer.train()
 
-    trainer.save_model("bert-baseline")
+    trainer.save_model("bert-bert_cased")
 
     test_results = trainer.evaluate(encoded_test)
     print(test_results)
