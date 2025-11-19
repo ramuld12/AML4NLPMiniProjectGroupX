@@ -212,10 +212,10 @@ __marimo__/
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/vcs.xml
-/experiments/bert_cased/bert-baseline/config.json
+/experiments/bert_cased/bert_cased/config.json
 /.idea/jupyter-settings.xml
-/experiments/bert_cased/bert-baseline/model.safetensors
-/experiments/bert_cased/bert-baseline/special_tokens_map.json
-/experiments/bert_cased/bert-baseline/tokenizer_config.json
-/experiments/bert_cased/bert-baseline/training_args.bin
-/experiments/bert_cased/bert-baseline/vocab.txt
+/experiments/bert_cased/bert_cased/model.safetensors
+/experiments/bert_cased/bert_cased/special_tokens_map.json
+/experiments/bert_cased/bert_cased/tokenizer_config.json
+/experiments/bert_cased/bert_cased/training_args.bin
+/experiments/bert_cased/bert_cased/vocab.txt
