@@ -205,3 +205,17 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+/.idea/.gitignore
+/.idea/AML4NLPMiniProjectGroupX.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml
+/experiments/baseline/bert-baseline/config.json
+/.idea/jupyter-settings.xml
+/experiments/baseline/bert-baseline/model.safetensors
+/experiments/baseline/bert-baseline/special_tokens_map.json
+/experiments/baseline/bert-baseline/tokenizer_config.json
+/experiments/baseline/bert-baseline/training_args.bin
+/experiments/baseline/bert-baseline/vocab.txt

@@ -1,0 +1,11 @@
+name: AML4NLPMiniProjectGroup
+channels:
+  - defaults
+  - conda-forge
+
+dependencies:
+  - python == 3.11.14
+  - anaconda
+  - pip
+  - pip:
+      - -r requirements.txt
