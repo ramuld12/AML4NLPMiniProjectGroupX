@@ -19,7 +19,7 @@ eval "$(conda shell.bash hook)"
 ENV_NAME='AML4NLPMiniProjectGroup'
 if ! conda env list | grep -q "$ENV_NAME"; then
     echo 'Creating new conda env...'
-    conda conda env create -f ./../environment.yml
+    conda env create -f environment.yml
     echo 'Created'
 else
     echo "Environment '$ENV_NAME' already exists."
