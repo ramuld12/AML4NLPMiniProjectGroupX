@@ -8,7 +8,7 @@
 #SBATCH --partition=acltr                  # Run on either the Red or Brown queue
 
 echo "Running on $(hostname):"
-nvidia-smi
+#nvidia-smi
 module load Anaconda3
 eval "$(conda shell.bash hook)"
 conda activate /opt/itu/condaenvs/pytorch
@@ -19,7 +19,7 @@ pip3 install -r ./../requirements.txt
 # Verify Pytorch is available
 python -c "import torch; print(torch.cuda.get_device_name(0))"
 
-echo "Dependencies installed, now running"
+echo "Dependencies installed, now running script"
 
 python ./../experiments/bert_cased/bert_cased.py
 
