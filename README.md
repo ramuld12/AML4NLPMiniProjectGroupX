@@ -8,7 +8,7 @@ We use python version 3.11.14, and torch with CUDA
 
 Recommend to use conda. Then create an environment like:
 ```
-conda env create -f environment.yaml
+conda env create -f environment.yml
 ```
 If using pip, install dependencies:
 ```
@@ -25,6 +25,8 @@ squeue: to see the queue and running jobs
 squeue -u <user>: View the users jobstatuses
 seff: to analyse the resources used on completed jobs
 tail -f <file>: View the last part of a file dynamically
+module load Anaconda3: Load anaconda
+eval "$(conda shell.bash hook)": Init anaconda (in the HPC, prefer to use the following instead of 'conda init')
 ```
 
 # Central problem, domain, data characteristics
