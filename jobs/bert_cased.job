@@ -22,3 +22,5 @@ python -c "import torch; print(torch.cuda.get_device_name(0))"
 echo "Dependencies installed, now running"
 
 python ./../experiments/bert_cased/bert_cased.py
+
+echo "Done"

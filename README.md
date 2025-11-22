@@ -4,6 +4,8 @@ Members: Alexander Rode (arod), Rasmus Herskind (rher)
 Dataset: https://huggingface.co/datasets/stanfordnlp/imdb
 
 ## How to run code
+We use python version 3.11.14, and torch with CUDA
+
 Recommend to use conda. Then create an environment like:
 ```
 conda env create -f environment.yaml
@@ -36,9 +38,12 @@ Sentiment analysis, Binary classification (negative / positive)
 
 # Discussion: summarise the most important results and lessons learned (what is good, what can be improved)
 
+
+
 TODO: Delete useful slurm commands
-TODO: Add validation set
-TODO: Compare with another transformer model (distilBert or roberta)
 TODO: Compare with bert-base-uncased
 TODO: Hyper-parameter-tuning
+
+# OPTIONAL
+TODO: Compare with another transformer model (distilBert or roberta)
 TODO: Qualitative Error Analysis

@@ -1,7 +1,12 @@
 scipy>=1.16.1
 
 jupyter>=1.0.0
-torch==2.8.0
+
+# GPU-enabled PyTorch
+# Might have to run these in the terminal in order to work properly
+torch # --index-url https://download.pytorch.org/whl/cu126'
+torchvision # --index-url https://download.pytorch.org/whl/cu126
+
 transformers~=4.57.1
 scikit-learn
 accelerate>=0.26.0
