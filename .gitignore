@@ -216,3 +216,8 @@ __marimo__/
 /.idea/jupyter-settings.xml
 /experiments/bert_cased/bert_cased/**
 /experiments/bert_cased/bert_cased_output/**
+/experiments/bert_cased/bert_cased_output1/**
+/experiments/bert_cased/bert_cased_output2/**
+/experiments/bert_cased/bert_cased_output3/**
+/experiments/bert_cased/bert_cased_output4/**
+/experiments/bert_cased/bert_cased_output5/**
