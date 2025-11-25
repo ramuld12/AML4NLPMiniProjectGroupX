@@ -87,7 +87,7 @@ def compute_metrics(eval_pred):
 
 #%%
 import wandb
-import datatime
+# import datatime
 for run in range(5):
     print(f"Starting run {run+1}")
     training_args = TrainingArguments(
@@ -102,7 +102,7 @@ for run in range(5):
         logging_steps=100,
         logging_first_step=True,
         load_best_model_at_end=True,
-        report_to="wandb", #set to 'none' if no report
+        report_to="none", #set to 'none' if no report
     )
 
     model = AutoModelForSequenceClassification.from_pretrained(
@@ -112,26 +112,26 @@ for run in range(5):
         label2id=label2id,
     )
     now = datetime.datetime.now()
-    run = wandb.init(
-        project="AML4NLPMiniProjectGroupX",    # Your project name (shows in wandb dashboard)
-        name=f"{model_name}:{now.timer()}",       # Run name
-        config={
-            "model": model_name,
-            "dataset": "IMDb",
-            "task": "Sentiment Analysis",
-            "train_size": len(train_dataset),
-            "val_size": len(validation_dataset),
-            "test_size": len(test_dataset),
-            "learning_rate": training_args.learning_rate,
-            "batch_train": training_args.per_device_train_batch_size,
-            "batch_eval": training_args.per_device_eval_batch_size,
-            "epochs": training_args.num_train_epochs,
-            "weight_decay": training_args.weight_decay,
-            "optimizer": "AdamW",
-            "scheduler": "linear",   # Trainer default
-            "device": "cuda" if torch.cuda.is_available() else "cpu",
-        }
-    )
+    # run = wandb.init(
+    #     project="AML4NLPMiniProjectGroupX",    # Your project name (shows in wandb dashboard)
+    #     name=f"{model_name}:{now.timer()}",       # Run name
+    #     config={
+    #         "model": model_name,
+    #         "dataset": "IMDb",
+    #         "task": "Sentiment Analysis",
+    #         "train_size": len(train_dataset),
+    #         "val_size": len(validation_dataset),
+    #         "test_size": len(test_dataset),
+    #         "learning_rate": training_args.learning_rate,
+    #         "batch_train": training_args.per_device_train_batch_size,
+    #         "batch_eval": training_args.per_device_eval_batch_size,
+    #         "epochs": training_args.num_train_epochs,
+    #         "weight_decay": training_args.weight_decay,
+    #         "optimizer": "AdamW",
+    #         "scheduler": "linear",   # Trainer default
+    #         "device": "cuda" if torch.cuda.is_available() else "cpu",
+    #     }
+    # )
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -143,7 +143,7 @@ for run in range(5):
         callbacks=[EarlyStoppingCallback(early_stopping_patience=2)]
     )
     trainer.train()
-    run.finish()
+    #run.finish()
 #%%
 
 #%%
