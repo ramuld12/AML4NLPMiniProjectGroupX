@@ -42,10 +42,14 @@ Sentiment analysis, Binary classification (negative / positive)
 
 
 
+TODO: Understand why it is overfitting so much
+TODO: Is there any perculiar thing in the data distribution?
+TODO: Why is this model a good idea? A bit deeper than just saying: nice model
+TODO: Check results in the literature, specifically for baselines and the bert-models
+
 TODO: Delete useful slurm commands
-TODO: Compare with bert-base-uncased
-TODO: Hyper-parameter-tuning
+
 
 # OPTIONAL
 TODO: Compare with another transformer model (distilBert or roberta)
-TODO: Qualitative Error Analysis
+TODO: Hyper-parameter-tuning (learning rate and batch size)
