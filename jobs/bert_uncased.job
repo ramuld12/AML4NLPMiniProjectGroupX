@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#SBATCH --job-name=bert_cased    # Job name
+#SBATCH --output=bert_cased.%j.out        # Name of output file (%j expands to jobId)
+#SBATCH --cpus-per-task=2                  # Schedule 8 cores (includes hyperthreading)
+#SBATCH --time=12:00:00                    # Run time (hh:mm:ss) - run for one hour max
+#SBATCH --gres=gpu                         # Use any GPU
+#SBATCH --partition=acltr                  # Run on either the Red or Brown queue
+
+echo "Running on $(hostname):"
+#nvidia-smi
+module load Anaconda3
+eval "$(conda shell.bash hook)"
+conda activate AML4NLPMiniProjectGroup
+
+#pip3 install -r ./../requirements.txt
+
+# Verify Pytorch is available
+python -c "import torch; print(torch.cuda.get_device_name(0))"
+
+echo "Dependencies installed, now running script"
+
+python ./../experiments/bert_uncased/bert_uncased.py
+
+echo "Done"
