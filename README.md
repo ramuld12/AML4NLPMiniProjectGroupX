@@ -15,18 +15,6 @@ pip install -r requirements.txt
 Then run the cells in the .ipynb files under the experiments folder or run them with `python 'python_file_here.py'`
 
 
-## Useful commands for slurm
-```
-sbatch: to enqueue new jobs
-scancel: to cancel existing jobs
-squeue: to see the queue and running jobs
-squeue -u <user>: View the users jobstatuses
-seff: to analyse the resources used on completed jobs
-tail -f <file>: View the last part of a file dynamically
-module load Anaconda3: Load anaconda
-eval "$(conda shell.bash hook)": Init anaconda (in the HPC, prefer to use the following instead of 'conda init')
-```
-
 # Central problem, domain, data characteristics
 We are doing sentiment analysis on the [Standford IMDB Movie Review Dataset](https://huggingface.co/datasets/stanfordnlp/imdb). \\
 Our goal is to do Binary Classification of each review. That is, we want to predict whether a specific review is positive or negative \\
@@ -48,7 +36,7 @@ We have further created a validation dataset from 10% of the training samples.
 # Central method: chosen architecture and training mechanisms, with a brief justification if non-standard
 We started by creating two baseline models:
 1. **Bag-of-words vectorizer** with Logistic Regression as loss function
-2. **Term Frequency-Inverse Document Frequency** with
+2. **Term Frequency-Inverse Document Frequency** with linear SVM
 
 After finishing the baselines we chose to use and compare Googles [`bert-base-uncased`](https://huggingface.co/google-bert/bert-base-uncased) and [`bert-base-cased`](https://huggingface.co/google-bert/bert-base-cased) tokenizers.
 Our goal here is to compare the two different models to see if casing makes a difference in classifying movie reviews.
@@ -60,7 +48,10 @@ As described in the original [paper](https://arxiv.org/abs/1810.04805), the bert
 - 12 attention heads
 - ~110M total parameters
 
-We are using the out-of-the-box, 
+The choice of BERT comes down to a few but strong reasons:
+- It is a pretrained model, that with a GLUE score of 80.5% [see original [paper](https://arxiv.org/abs/1810.04805), table 1], can achieve state-of-the-art performance for different downstream tasks. 
+- It understands the meaning of a word based on the other words in the sentence, and thus has a strong contextual understanding.
+- It was made to be easily adaptable to different downstream tasks, which made it easier to implement our task, namely sentiment analysis.
 
 ## Training:
 We used [HuggingFace Trainer](https://huggingface.co/docs/transformers/main_classes/trainer) with the following hyper-parameters:
@@ -73,14 +64,21 @@ We used [HuggingFace Trainer](https://huggingface.co/docs/transformers/main_clas
 We also added early stopping with patience of 2, meaning the model stops training if it does not improve its validation loss after 2 epochs. \\
 Evaluation happens after each epoch.
 
-We have chosen to compare 
-
 # Key experiments & results: present and explain results, e.g. in simple accuracy tables over error graphs up to visualisations of representations and/or edge cases – keep it crisp
 
 We tried to run multiple different variants of the experiments, but in general each experiment followed the same pattern of aggressively overfitting.
 
 ## Baseline results
+Our baseline results are shown below:
 
+|           | Bag-of-Words | Term Frequency-Inverse Document Frequency |
+|-----------|--------------|-------------------------------------------|
+| Accuracy  | 0.8551       | 0.8698                                    |
+| F1        | 0.8537       | 0.8685                                    |
+| Precision | 0.8621       | 0.8771                                    |
+| Recall    | 0.8454       | 0.8601                                    |
+
+In general our baseline results compares pretty well with the ones presented in the [original paper for the dataset](https://aclanthology.org/P11-1015/) with accuracies around 87-88%.
 
 ## bert-base-cased
 
@@ -92,8 +90,10 @@ Training:
 |     2 |      0.226600 |        0.434036 | 0.890800 | 0.890601 |  0.857038 | 0.936393 |
 |     3 |      0.095300 |        0.522591 | 0.901200 | 0.901195 |  0.892041 | 0.911433 |
 
-Evaluation on test set:
+As we can clearly see the validation loss increases quite a lot after each epoch, triggering early stopping.
 
+Evaluation on test set:
+# TODO
 
 ## bert-base-uncased
 
@@ -105,21 +105,24 @@ Training:
 |     2 |      0.226200 |        0.297630 | 0.930000 | 0.929998 |  0.925692 | 0.935304 |
 |     3 |      0.112000 |        0.432914 | 0.924800 | 0.924799 |  0.928341 | 0.920927 |
 
+Again we see aggressive growth in validation loss after each epoch. This clearly suggests to us that the base model is overfitting.
+
 Evaluation on test set:
+# TODO
 
 # Discussion: summarise the most important results and lessons learned (what is good, what can be improved)
-In general both models improved from the baselines counterparts. They both did however overfit quite a lot, which means that our training usually stopped after 3 epochs. We investigated the root course of this quite alot
+In general both models improved from the baselines counterparts. They both did however overfit quite a lot, which means that our training usually stopped after 3 epochs. 
+From looking into the dataset itself, we found that some reviews had a label of 1 (positive), while being sentimentally negative. From the research paper [Learning Word Vectors for Sentiment Analysis](https://aclanthology.org/P11-1015/), the dataset was constructed such that reviews with a rating of 4 or lower would be labeled negative, while reviews with 7 or higher would be labeled positive. 
+In between ratings were not included in the dataset. We found in the dataset, samples, that based of this criteria had a wrong label. An example of this would be the following review / sample: 
 
-![img.png](img.png)
+![missClassifiedReview.png](missClassifiedReview.png)
+
+With a label of 1 / positive. 
+While we were not able to find the original review of imdb, the criteria for a review being positive is a rating of at least 7, and thus if this review is correct in its rating, then this review is not aligned with the criteria that the authors set for the dataset. With this in mind, the increase in validation loss after 3 epochs could be influenced by this flaw in the dataset.
+From our limited research we have not been able to find others discussing this flaw in the dataset, even though [others seems to encounter the same problem of overfitting](https://huggingface.co/lyrisha/distilbert-base-finetuned-sentiment).
+
+
 
 TODO: Understand why it is overfitting so much
 TODO: Is there any peculiar thing in the data distribution?
-TODO: Why is this model a good idea? A bit deeper than just saying: nice model
 TODO: Check results in the literature, specifically for baselines and the bert-models
-
-TODO: Delete useful slurm commands
-
-
-# OPTIONAL
-TODO: Compare with another transformer model (distilBert or roberta)
-TODO: Hyper-parameter-tuning (learning rate and batch size)
