@@ -68,18 +68,6 @@ Evaluation happens after each epoch.
 
 We tried to run multiple different variants of the experiments, but in general each experiment followed the same pattern of aggressively overfitting.
 
-## Baseline results
-Our baseline results are shown below:
-
-|           | Bag-of-Words | Term Frequency-Inverse Document Frequency |
-|-----------|--------------|-------------------------------------------|
-| Accuracy  | 0.8551       | 0.8698                                    |
-| F1        | 0.8537       | 0.8685                                    |
-| Precision | 0.8621       | 0.8771                                    |
-| Recall    | 0.8454       | 0.8601                                    |
-
-In general our baseline results compares pretty well with the ones presented in the [original paper for the dataset](https://aclanthology.org/P11-1015/) with accuracies around 87-88%.
-
 ## bert-base:
 
 ### cased Training
@@ -101,6 +89,8 @@ As we can clearly see the validation loss increases quite a lot after each epoch
 Again we see aggressive growth in validation loss after each epoch. This clearly suggests to us that the base model is overfitting.
 
 ### Testing
+Below are our test results for both baselines and bert-base models
+
 |           | Bag-of-Words | Term Frequency-Inverse Document Frequency | bert-base-cased | bert-base-uncased |
 |-----------|--------------|-------------------------------------------|-----------------|-------------------|
 | Loss      | 0.4338       | 0.3181                                    | 0.2435          | 0.2277            |
@@ -108,11 +98,15 @@ Again we see aggressive growth in validation loss after each epoch. This clearly
 | F1        | 0.8606       | 0.8832                                    | 0.9220          | 0.9338            |
 | Precision | 0.8683       | 0.8847                                    | 0.9281          | 0.9392            |
 | Recall    | 0.8531       | 0.8818                                    | 0.9148          | 0.9278            |
+In general our baseline results compares pretty well with the ones presented in the [original paper for the dataset](https://aclanthology.org/P11-1015/) with results around 87-88%.
 
-The models seem to perform relatively even, with a slight edge to the uncased model. 
+The bert-base models seem to perform relatively even, with a slight edge to the uncased model. 
 Interesting to note, however, is that the test loss in both models are higher than the training loss, but much lower than the validation loss.
 Below we show the confusing matrix for bert-base-uncased:
 
+![confussion_matrix_uncased.png](confussion_matrix_uncased.png)
+
+The model predicts almost even on both true positives and true negatives, but incorrectly predicts negative more often than incorrectly predicting positive.
 
 # Discussion: summarise the most important results and lessons learned (what is good, what can be improved)
 In general both models improved from the baselines counterparts. They both did however overfit quite a lot, which means that our training usually stopped after just 3 epochs. 
@@ -127,14 +121,17 @@ With a label of 1 / positive.
 While we were not able to find the original review on imdb, the criteria for a review being positive is a rating of at least 7, and thus if this review is correct in its rating, then this review is not aligned with the criteria that the authors set for the dataset. With this in mind, the increase in validation loss after 3 epochs could be influenced by this flaw in the dataset.
 From our limited research we have not been able to find others discussing this flaw in the dataset, even though [others seems to encounter the same problem of overfitting](https://huggingface.co/lyrisha/distilbert-base-finetuned-sentiment). 
 
-Looking at the data points which contributed most to our validation loss, we saw a general pattern of reviews we would classify as negative having a label of 1 / positive, as shown below.
+Looking at the data points which contributed most to our validation loss, we saw a general pattern of reviews we would classify as negative or positive having a the opposite label. Concrete examples are shown below:
 
+| Label | Loss   | Text                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|-------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 0     | 5.7770 | Great movie - especially the music - Etta James - "At Last". This speaks volumes when you have finally found that special someone.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| 1     | 6.0665 | This film Evil Breed: The legend of samhain contains very little thought or effort. It is ridiculed with specs of ultra fast "slasher" style death and plain disgusting acts of death. The acting was rated a D as the actors show very little ability, and the stupidity of them in the film is too questionable. The way they portrayed what people their ages act like was incredibly different. The odd split of porn is fit in thought it really doesn't offer much, and any area that is respectable but is quite quickly run down with absolute gut wrenching death. Example is the poor fellow whom is disemboweled from his anus, and the scene lasts for about 5 minutes. It is terribly obvious of how little of a fight the kids put up. This film is a good choice for someone who likes to watch some awful deaths and practically torture. |
 
-
-This would explain the validation loss trending upwards, since some, in our mind, negative review are labelled as 0 / negative, and some negative reviews are labelled as 1 / positive. 
+This would explain the validation loss trending upwards, since some, in our mind, negative reviews are labelled as 0 / negative, and some negative reviews are labelled as 1 / positive (and likewise for positive reviews).
 We would expect the validation loss to stop around 50% (random guessing), given the models are unable to learn specific patterns due to these seemingly random labelled reviews.
 
-Given more time we would like to dig even deeper into the dataset, to see how many of these incorrectly labelled datapoints there are, and whether they are equally present in the test set. 
+Given more time we would like to dig deeper into the dataset, to see how many of these incorrectly labelled datapoints there are, and whether they are equally present in the test set. 
 The test loss for both models is also relatively high, but given the 10 times larger size of the dataset, we would suspect the overfitting of the train set to matter less on average.
 
 Lastly we initially set out to compare `bert-base-uncased` with `bert-base-cased`. They performed in general pretty similar, with a slight edge towards `bert-base-uncased` by 1-2% across the different metrics.
