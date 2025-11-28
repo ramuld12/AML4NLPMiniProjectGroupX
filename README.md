@@ -1,6 +1,10 @@
 # AML4NLPMiniProjectGroupX
 Members: Alexander Rode (arod), Rasmus Herskind (rher)
 
+Consists of two notebooks:
+- experiments/baseline.ipynb: Baseline experiments for Bag-of-Words and Term Frequency-Inverse Document Frequency
+- experiments/bert-base.ipynb: Experiments and visualisation of using Google's `bert-base-uncased` and `bert-base-cased`
+
 ## How to run code
 We use python version 3.11.14, and torch with CUDA
 
