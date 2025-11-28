@@ -22,8 +22,8 @@ Then run the cells in the .ipynb files under the experiments folder or run them 
 
 
 # Central problem, domain, data characteristics
-We are doing sentiment analysis on the [Standford IMDB Movie Review Dataset](https://huggingface.co/datasets/stanfordnlp/imdb). \\
-Our goal is to do Binary Classification of each review. That is, we want to predict whether a specific review is positive or negative \\
+We are doing sentiment analysis on the [Standford IMDB Movie Review Dataset](https://huggingface.co/datasets/stanfordnlp/imdb).  
+Our goal is to do Binary Classification of each review. That is, we want to predict whether a specific review is positive or negative
 
 ## Dataset description
 
@@ -35,7 +35,7 @@ The dataset consists of 25000 training samples and 25000 test samples. Some conc
 | This is just a short comment but I stumbled onto this movie by chance and I loved it. The acting is great, the story is simple and touching, and the lines, especially from the 4-yr-old Desi, are so cute and sad. Seek it out.                                                | 1     |
 | What an inspiring movie, I laughed, cried and felt love. For a true story,it does give you hope and that miracles do happen. It has a great cast. Ellen Burstyn, Samantha Mathis, Jodelle Ferland(she's 4 or 5yrs. old) what a actress. Its on Showtime. A Must See Movie!! :)= | 1     |
 
-Here `0` represents a negative review and `1` represents a positive review. Both the training and test samples are balanced, meaning that 12500 samples are positive and 12500 are negative. \\
+Here `0` represents a negative review and `1` represents a positive review. Both the training and test samples are balanced, meaning that 12500 samples are positive and 12500 are negative.
 
 We have further created a validation dataset from 10% of the training samples.
 
@@ -54,7 +54,7 @@ As described in the original [paper](https://arxiv.org/abs/1810.04805), the bert
 - 12 attention heads
 - ~110M total parameters
 
-The choice of BERT comes down to a few but strong reasons:
+The choice of BERT comes down to a few, but strong reasons:
 - It is a pretrained model, that with a GLUE score of 80.5% [see original [paper](https://arxiv.org/abs/1810.04805), table 1], can achieve state-of-the-art performance for different downstream tasks. 
 - It understands the meaning of a word based on the other words in the sentence, and thus has a strong contextual understanding.
 - It was made to be easily adaptable to different downstream tasks, which made it easier to implement our task, namely sentiment analysis.
@@ -67,7 +67,7 @@ We used [HuggingFace Trainer](https://huggingface.co/docs/transformers/main_clas
 - Weight decay: 0.01
 - Epochs: 10
 
-We also added early stopping with patience of 2, meaning the model stops training if it does not improve its validation loss after 2 epochs. \\
+We also added early stopping with patience of 2, meaning the model stops training if it does not improve its validation loss after 2 epochs.  
 Evaluation happens after each epoch.
 
 # Key experiments & results
