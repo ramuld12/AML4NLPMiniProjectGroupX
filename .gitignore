@@ -214,12 +214,7 @@ __marimo__/
 /.idea/vcs.xml
 /experiments/bert_cased/bert_cased/config.json
 /.idea/jupyter-settings.xml
-/experiments/bert_cased/bert_cased/**
-/experiments/bert_cased/wandb/**
-/experiments/bert_cased/bert_cased_model/**
-/experiments/bert_cased/bert_cased_output/**
-/experiments/bert_cased/bert_cased_output1/**
-/experiments/bert_cased/bert_cased_output2/**
-/experiments/bert_cased/bert_cased_output3/**
-/experiments/bert_cased/bert_cased_output4/**
-/experiments/bert_cased/bert_cased_output5/**
+/experiments/bert-base_cased_model/**
+/experiments/bert-base_cased_output/**
+/experiments/bert-base_uncased_model/**
+/experiments/bert-base_uncased_output/**
