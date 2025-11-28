@@ -16,3 +16,5 @@ datasets~=3.3.2
 hf_xet
 evaluate~=0.4.6
 numpy~=1.26.4
+seaborn
+matplotlib
