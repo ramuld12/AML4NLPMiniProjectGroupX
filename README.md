@@ -5,6 +5,8 @@ Consists of two notebooks:
 - experiments/baseline.ipynb: Baseline experiments for Bag-of-Words and Term Frequency-Inverse Document Frequency
 - experiments/bert-base.ipynb: Experiments and visualisation of using Google's `bert-base-uncased` and `bert-base-cased`
 
+Both notebooks are also in PDF with the final results used for our report. Not however the training results after each epoch is only visible in the .ipynb notebook for bert-base
+
 ## How to run code
 We use python version 3.11.14, and torch with CUDA
 
