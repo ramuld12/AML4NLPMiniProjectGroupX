@@ -83,33 +83,33 @@ In general our baseline results compares pretty well with the ones presented in 
 ## bert-base:
 
 ### cased Training
-| Epoch | Training Loss | Validation Loss | Accuracy |       F1 | Precision |   Recall |
-|------:|--------------:|----------------:|---------:|---------:|----------:|---------:|
-|     1 |      0.287100 |        0.272942 | 0.919200 | 0.919199 |  0.925747 | 0.912490 |
-|     2 |      0.212000 |        0.359836 | 0.919600 | 0.919530 |  0.948980 | 0.887828 |
-|     3 |      0.104200 |        0.399747 | 0.924000 | 0.923964 |  0.946444 | 0.899761 |
+| Epoch | Training Loss | Validation Loss | Accuracy |     F1 | Precision | Recall |
+|------:|--------------:|----------------:|---------:|-------:|----------:|-------:|
+|     1 |        0.2871 |          0.2729 |   0.9192 | 0.9192 |    0.9257 | 0.9125 |
+|     2 |        0.2120 |          0.3598 |   0.9196 | 0.9195 |    0.9490 | 0.8878 |
+|     3 |        0.1042 |          0.3997 |   0.9240 | 0.9240 |    0.9464 | 0.8998 |
 
 As we can clearly see the validation loss increases quite a lot after each epoch, triggering early stopping.
 
 ### uncased Training
-| Epoch | Training Loss | Validation Loss | Accuracy |       F1 | Precision |   Recall |
-|------:|--------------:|----------------:|---------:|---------:|----------:|---------:|
-|     1 |      0.267000 |        0.253649 | 0.926800 | 0.926799 |  0.930701 | 0.922524 |
-|     2 |      0.226200 |        0.297630 | 0.930000 | 0.929998 |  0.925692 | 0.935304 |
-|     3 |      0.112000 |        0.432914 | 0.924800 | 0.924799 |  0.928341 | 0.920927 |
+| Epoch | Training Loss | Validation Loss | Accuracy |     F1 | Precision |   Recall |
+|------:|--------------:|----------------:|---------:|-------:|----------:|---------:|
+|     1 |        0.2543 |          0.2632 |   0.9240 | 0.9240 |    0.9420 |   0.9045 |
+|     2 |        0.1749 |          0.3009 |   0.9300 | 0.9300 |    0.9363 |   0.9236 |
+|     3 |        0.1122 |          0.3677 |   0.9340 | 0.9340 |    0.9410 |   0.9268 |
 
 Again we see aggressive growth in validation loss after each epoch. This clearly suggests to us that the base model is overfitting.
 
 ### Testing
 |           | Bag-of-Words | Term Frequency-Inverse Document Frequency | bert-base-cased | bert-base-uncased |
 |-----------|--------------|-------------------------------------------|-----------------|-------------------|
-| Loss      |              |                                           | 0.2435          |                   |
-| Accuracy  | 0.8551       | 0.8698                                    | 0.9220          |                   |
-| F1        | 0.8537       | 0.8685                                    | 0.9220          |                   |
-| Precision | 0.8621       | 0.8771                                    | 0.9281          |                   |
-| Recall    | 0.8454       | 0.8601                                    | 0.9148          |                   |
+| Loss      |              |                                           | 0.2435          | 0.2277            |
+| Accuracy  | 0.8551       | 0.8698                                    | 0.9220          | 0.9338            |
+| F1        | 0.8537       | 0.8685                                    | 0.9220          | 0.9338            |
+| Precision | 0.8621       | 0.8771                                    | 0.9281          | 0.9392            |
+| Recall    | 0.8454       | 0.8601                                    | 0.9148          | 0.9278            |
 
-The models seem to perform relatively even, with a slight edge to 
+The models seem to perform relatively even, with a slight edge to the uncased model. 
 Interesting to note, however, is that the test loss in both models are higher than the training loss, but much lower than the validation loss.
 Below we show the confusing matrix for bert-base-uncased:
 
