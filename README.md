@@ -35,8 +35,8 @@ We have further created a validation dataset from 10% of the training samples.
 
 # Central method
 We started by creating two baseline models:
-1. **Bag-of-words vectorizer** with Logistic Regression as loss function
-2. **Term Frequency-Inverse Document Frequency** with linear SVM
+1. **Bag-of-words vectorizer** with Logistic Regression
+2. **Term Frequency-Inverse Document Frequency** with Logistic Regression
 
 After finishing the baselines we chose to use and compare Googles [`bert-base-uncased`](https://huggingface.co/google-bert/bert-base-uncased) and [`bert-base-cased`](https://huggingface.co/google-bert/bert-base-cased) tokenizers.
 Our goal here is to compare the two different models to see if casing makes a difference in classifying movie reviews.
@@ -103,11 +103,11 @@ Again we see aggressive growth in validation loss after each epoch. This clearly
 ### Testing
 |           | Bag-of-Words | Term Frequency-Inverse Document Frequency | bert-base-cased | bert-base-uncased |
 |-----------|--------------|-------------------------------------------|-----------------|-------------------|
-| Loss      |              |                                           | 0.2435          | 0.2277            |
-| Accuracy  | 0.8551       | 0.8698                                    | 0.9220          | 0.9338            |
-| F1        | 0.8537       | 0.8685                                    | 0.9220          | 0.9338            |
-| Precision | 0.8621       | 0.8771                                    | 0.9281          | 0.9392            |
-| Recall    | 0.8454       | 0.8601                                    | 0.9148          | 0.9278            |
+| Loss      | 0.4338       | 0.3181                                    | 0.2435          | 0.2277            |
+| Accuracy  | 0.8618       | 0.8834                                    | 0.9220          | 0.9338            |
+| F1        | 0.8606       | 0.8832                                    | 0.9220          | 0.9338            |
+| Precision | 0.8683       | 0.8847                                    | 0.9281          | 0.9392            |
+| Recall    | 0.8531       | 0.8818                                    | 0.9148          | 0.9278            |
 
 The models seem to perform relatively even, with a slight edge to the uncased model. 
 Interesting to note, however, is that the test loss in both models are higher than the training loss, but much lower than the validation loss.
