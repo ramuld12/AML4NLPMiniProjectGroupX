@@ -104,6 +104,7 @@ Below are our test results for both baselines and bert-base models
 | F1        | 0.8606       | 0.8832                                    | 0.9220          | 0.9338            |
 | Precision | 0.8683       | 0.8847                                    | 0.9281          | 0.9392            |
 | Recall    | 0.8531       | 0.8818                                    | 0.9148          | 0.9278            |
+
 In general our baseline results compares pretty well with the ones presented in the [original paper for the dataset](https://aclanthology.org/P11-1015/) with results around 87-88%.
 
 The bert-base models seem to perform relatively even, with a slight edge to the uncased model. 
